@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>3DS MPI - API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,9 +212,6 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -228,216 +225,544 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#making-requests" class="toc-h1 toc-link" data-title="Making Requests">Making Requests</a>
+          </li>
+          <li>
+            <a href="#lookuprequest" class="toc-h1 toc-link" data-title="LookUpRequest">LookUpRequest</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#lookuprequest-object" class="toc-h2 toc-link" data-title="LookupRequest Object">LookupRequest Object</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#lookupresponse-object" class="toc-h2 toc-link" data-title="LookupResponse Object">LookupResponse Object</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#lookuprequest-2" class="toc-h2 toc-link" data-title="LookupRequest">LookupRequest</a>
+                  </li>
+                  <li>
+                    <a href="#handle-lookupresponse" class="toc-h2 toc-link" data-title="Handle LookupResponse">Handle LookupResponse</a>
                   </li>
               </ul>
           </li>
           <li>
+            <a href="#transactionstatus" class="toc-h1 toc-link" data-title="TransactionStatus">TransactionStatus</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#transactionstatus-object" class="toc-h2 toc-link" data-title="TransactionStatus Object">TransactionStatus Object</a>
+                  </li>
+                  <li>
+                    <a href="#get-transaction-status" class="toc-h2 toc-link" data-title="Get Transaction Status">Get Transaction Status</a>
+                  </li>
+                  <li>
+                    <a href="#handle-transactionstatus" class="toc-h2 toc-link" data-title="Handle TransactionStatus">Handle TransactionStatus</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#eci-codes" class="toc-h1 toc-link" data-title="Eci Codes">Eci Codes</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#3ds-error" class="toc-h2 toc-link" data-title="3DS Error">3DS Error</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://www.placetopay.com/web/'>Sign Up for a Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the 3DS-MPI API! You can use our API to access 3DS-MPI API endpoints, which can get you started with 3DS authentication and other resources in the MPI.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>We have language bindings in Shell, You can view examples in the dark area to the right.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl POST <span class="s2">"https://3ds-mpi.placetopay.com"</span>
+  -H <span class="s2">"Authorization: Bearer YourApiKeyHere"</span>
 </code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>3DS-MPI uses API keys to authenticate requests.</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>3DS-MPI expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
+<p><code>Authorization: Bearer YourApiKeyHere</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>YourApiKeyHere</code> with your personal API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='making-requests'>Making Requests</h1>
+<p>The first thing you need to know is what API URL endpoint to use:</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<ul>
+<li>MPI URL: use <a href="https://3ds-mpi.placetopay.com">https://3ds-mpi.placetopay.com</a></li>
+</ul>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p>When you write your own 3DS-MPI client, please keep the following in mind:</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
+<ul>
+<li><p>Always set the <strong>Accept</strong> header to <code>application/json</code>.</p></li>
+<li><p>Always set the <strong>Content-Type</strong> header to <code>application/json</code>. </p></li>
+<li><p>Always set the <strong>Authorization</strong> header to <code>Bearer YourApiKeyHere</code>. </p></li>
+<li><p>Client libraries will usually set these headers automatically.</p></li>
+</ul>
+<h1 id='lookuprequest'>LookUpRequest</h1>
+<p>The <em>LookUpRequest</em> is responsible for initiating user authentication. </p>
+
+<p>You must use the <em>LookUpRequest</em> right after you have captured the payment information, which must contain the final amount of the transaction and the credit card information.</p>
+
+<p>The response message returned by the MPI contains information about the enrollment of the card in 3DS.</p>
+<h2 id='lookuprequest-object'>LookupRequest Object</h2>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example of <strong>Basic</strong> LookupRequest Object:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pan"</span><span class="p">:</span><span class="w"> </span><span class="mi">4111111111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiration_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2029</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiration_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">23999.69</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.merchanturl.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<blockquote>
+<p>Example of <strong>Advanced</strong> LookupRequest Object:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pan"</span><span class="p">:</span><span class="w"> </span><span class="mi">4111111111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiration_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2029</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiration_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">23999.69</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.merchanturl.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"installments"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recurrence"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recurrence_frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recurrence_expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20201122"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"disable_redirect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The object contains information about the payment that is being processed, the information is required in order to get information about the credit card in 3DS.</p>
+<h3 id='arguments'>Arguments</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
+<th>Type</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
+<td>pan</td>
+<td>integer</td>
 <td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>Credit card number</td>
+</tr>
+<tr>
+<td>expiration_year</td>
+<td>integer</td>
+<td>true</td>
+<td>Card&#39;s expiration year YYYY</td>
+</tr>
+<tr>
+<td>expiration_month</td>
+<td>integer</td>
+<td>true</td>
+<td>Card&#39;s expiration month MM</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>number</td>
+<td>true</td>
+<td>The amount of the transaction</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>ISO 4217 alpha code of the currency</td>
+</tr>
+<tr>
+<td>redirect_uri</td>
+<td>string</td>
+<td>true</td>
+<td>Return url</td>
+</tr>
+<tr>
+<td>installments</td>
+<td>number</td>
+<td>false</td>
+<td>Payment installments</td>
+</tr>
+<tr>
+<td>recurrence</td>
+<td>boolean</td>
+<td>false</td>
+<td>Is recurrence enabled?</td>
+</tr>
+<tr>
+<td>recurrence_frequency</td>
+<td>boolean</td>
+<td>false</td>
+<td>Days between recurrence</td>
+</tr>
+<tr>
+<td>recurrence_expiration</td>
+<td>string</td>
+<td>false</td>
+<td>Expiration date of recurrence</td>
+</tr>
+<tr>
+<td>locale</td>
+<td>string</td>
+<td>false</td>
+<td>Localization language</td>
+</tr>
+<tr>
+<td>disable_redirect</td>
+<td>boolean</td>
+<td>false</td>
+<td>Disable MPI Redirect Handling</td>
 </tr>
 </tbody></table>
+<h4 id='notes'>Notes</h4>
+<ul>
+<li><p><code>redirect_uri</code> Consumer Url, the user will return to this url once the authentication process is finished.</p></li>
+<li><p><code>installments</code> If applicable, the amount of installments selected for payment.</p></li>
+<li><p><code>recurrence</code> If applicable, is recurrence enabled for the payment?</p></li>
+<li><p><code>recurrence_frequency</code> required if recurrence is enabled, the amount of days between each recurrence.</p></li>
+<li><p><code>recurrence_expiration</code> required if recurrence is enabled, format must be YYYYMMDD.</p></li>
+<li><p><code>locale</code> Localization language to be used in messages, choose from <code>es|en</code>.</p></li>
+<li><p><code>disable_redirect</code> if <code>true</code>,  the MPI will not handle the automatic redirection to the ACS. The API will return the necessary data for the consumer to make the post form.</p></li>
+</ul>
+<h2 id='lookupresponse-object'>LookupResponse Object</h2>
+<blockquote>
+<p>Example of LookupResponse Object:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"enrolled"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://3ds-mpi.placetopay.com/authenticate/veryLargeUrl"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1018</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Example Response (200), with <code>disable_redirect</code> as <code>true</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"enrolled"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"acs_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example-acs-url.com/path/auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pa_req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"veryLargeCompressedPaReqToBeSent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"term_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.exmaple-mpi-url.com/authenticate/callback/veryLargeUrl"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"md"</span><span class="p">:</span><span class="w"> </span><span class="s2">"merchantExtraData"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1242</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='arguments-2'>Arguments</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enrolled</td>
+<td>string</td>
+<td>Credit card enrollment status.</td>
+</tr>
+<tr>
+<td>redirect_url</td>
+<td>string</td>
+<td>MPI Url, user must visit to continue with 3DS authentication.</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td>integer</td>
+<td>MPI transaction Id.</td>
+</tr>
+<tr>
+<td>eci_flag</td>
+<td>number</td>
+<td>Given ECI flag for the transaction.</td>
+</tr>
+<tr>
+<td>acs_url</td>
+<td>string</td>
+<td>if if <code>disable_redirect</code> was <code>true</code>. The original ACS Url to continue with 3DS authentication.</td>
+</tr>
+<tr>
+<td>pa_req</td>
+<td>string</td>
+<td>if <code>disable_redirect</code> was <code>true</code>. Compressed payer authentication request.</td>
+</tr>
+<tr>
+<td>term_url</td>
+<td>string</td>
+<td>if <code>disable_redirect</code> was <code>true</code>. Terminal Url, a MPI url.</td>
+</tr>
+<tr>
+<td>md</td>
+<td>string</td>
+<td>if <code>disable_redirect</code> was <code>true</code>. Merchant data, additional data.</td>
+</tr>
+</tbody></table>
+<h4 id='notes-2'>Notes</h4>
+<ul>
+<li><p><code>enrolled</code> Enrollment status one of <code>Y|N|U</code>. If <code>Y</code> the user can be authenticated.</p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<ul>
+<li><code>Y</code> Authentication is available.</li>
+<li><code>N</code> Authentication is not available.</li>
+<li><code>U</code> Unable to know if authentication is available.</li>
+</ul></li>
+<li><p><code>redirect_url</code> Present if <code>enrolled</code> is <code>Y</code>, MPI Url that handles the required action for the user to continue with the authentication process.</p></li>
+<li><p><code>transaction_id</code> MPI transaction identifier.</p></li>
+<li><p><code>eci_flag</code> Present if <code>enrolled</code> is <code>N</code> or <code>U</code>, The <em>Electronic Commerce Indicator</em> indicates the level of security and the result of the 3D Secure authorization. See <a href="#eci-codes">Eci Codes</a></p></li>
+<li><p><code>acs_url</code> Present if <code>disable_redirect</code> was <code>true</code> &amp; <code>enrolled</code> is <code>Y</code>. Contains the URL of the card issuer authentication site (bank).</p></li>
+<li><p><code>pa_req</code> Present if <code>disable_redirect</code> was <code>true</code> &amp; <code>enrolled</code> is <code>Y</code>. Contains information that must be posted with the authentication form.</p></li>
+<li><p><code>term_url</code> Present if <code>disable_redirect</code> was <code>true</code> &amp; <code>enrolled</code> is <code>Y</code>, Contains information that must be posted with the authentication form. </p></li>
+<li><p><code>md</code> Present if <code>disable_redirect</code> was <code>true</code> &amp; <code>enrolled</code> is <code>Y</code>, Contains information that must be posted with the authentication form. </p></li>
+</ul>
+<h2 id='lookuprequest-2'>LookupRequest</h2>
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://3ds-mpi.placetopay.com/api/lookup"</span> <span class="se">\ </span>
+    -X POST <span class="se">\</span>
+    -H <span class="s2">"accept: application/json"</span> <span class="se">\ </span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Authorization: Bearer yourApiKey"</span> <span class="se">\ </span>
+    -d <span class="o">{</span><span class="s2">"pan"</span>:4111111111111111,<span class="s2">"expiration_year"</span>:2029,<span class="s2">"expiration_month"</span>:4,<span class="s2">"amount"</span>:23999.69,<span class="s2">"currency"</span>:<span class="s2">"USD"</span>,<span class="s2">"redirect_uri"</span>:<span class="s2">"https://www.merchanturl.com"</span>,<span class="s2">"installments"</span>:3,<span class="s2">"recurrence"</span>:true,<span class="s2">"recurrence_frequency"</span>:20,<span class="s2">"recurrence_expiration"</span>:<span class="s2">"20201122"</span>,<span class="s2">"locale"</span>:<span class="s2">"en"</span>,<span class="s2">"disable_redirect"</span>:false<span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>Example Response (200):</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"enrolled"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://3ds-mpi.placetopay.com/authenticate/veryLargeUrl"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1018</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>LookUp credit card information in 3DS.</p>
+
+<p><code>POST http://example.com/api/lookup</code></p>
+
+<p>see <a href="#lookuprequest-object">LookupRequest Object</a></p>
+<h2 id='handle-lookupresponse'>Handle LookupResponse</h2>
+<p>Verify the <code>enrolled</code> parameter in <code>LookupResponse</code> and proceed as:</p>
+<h3 id='authentication-not-available-enrolled-isu'>Authentication not available, <code>enrolled</code> is<code>U</code></h3>
+<p>The enrollment of the card in 3DS could not be verified. It can happen due to some problem in the internal systems of 3DS.</p>
+
+<p>You can proceed without 3DS.</p>
+<h3 id='authentication-not-available-enrolled-isn'>Authentication not available, <code>enrolled</code> is<code>N</code></h3>
+<p>The card is not enrolled in 3DS.</p>
+
+<p>You can proceed without 3DS.</p>
+<h3 id='authentication-is-available-enrolled-isy'>Authentication is available, <code>enrolled</code> is<code>Y</code></h3>
+<p>The card is enrolled in 3DS and the cardholder can be authenticated.</p>
+
+<p>The card holder must be redirected to the url given in the <code>LookupResponse</code> as <code>redirect_url</code>. The MPI will handle the required actions
+in order to continue with the authentication process </p>
+
+<blockquote>
+<p>Example Post Form when <code>disable_redirect</code> is <code>true</code>.</p>
+</blockquote>
+<pre class="highlight html tab-html"><code>    <span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"{{ $response['acs_url'] }}"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"PaReq"</span> <span class="na">value=</span><span class="s">"{{ $response['pa_req'] }}"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"TermUrl"</span> <span class="na">value=</span><span class="s">"{{ $response['term_url'] }}"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"MD"</span> <span class="na">value=</span><span class="s">"{{ $response['md'] }}"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;noscript&gt;</span>
+            <span class="nt">&lt;div&gt;</span>
+                <span class="nt">&lt;h2&gt;</span>JavaScript is currently disabled or is not supported by your browser<span class="nt">&lt;/h2&gt;</span>
+                <span class="nt">&lt;p&gt;</span>Please continue with the process manually<span class="nt">&lt;/p&gt;</span>
+                <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"button"</span><span class="nt">&gt;</span>Continue'<span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/noscript&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
+</code></pre>
+<aside class="notice">
+    If you used <code>disable_redirect</code> parameter as <code>true</code> then you have to handle the post form as follows:
+    <br><br>Collect the data given in <code>LookupResponse</code> and send a new web form using the cardholder browser. 
+    <br><br>An example of the post web form is given here. 
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>The user will go through the authentication process and will be redirected to the url that the consumer sent in <code>LookupRequest.redirect_uri</code>.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p>Once the user visits the merchant Url (<code>LookupRequest.redirect_uri</code>), The authentication process can be treated as finished. 
+The merchant must use <code>GetTransactionStatus</code> to get information about the 3DS authentication process.</p>
+<h1 id='transactionstatus'>TransactionStatus</h1>
+<p>The <em>TransactionStatus</em> object gives information about the results of 3DS authentication in a transaction</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
+<p>You must use the <em>GetTransactionStatus</em> right after the user completed the authentication process and returned to the merchant page.</p>
+<h2 id='transactionstatus-object'>TransactionStatus Object</h2>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example of TransactionStatus Object:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"authentication_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"validated_signature"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"eci"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"xid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3030303030303030303030303030303030303032"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cavv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000020777351815352670947035181300000000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+</span></code></pre><h3 id='arguments-3'>Arguments</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>authentication_status</td>
+<td>string</td>
+<td>Authentication Status on 3DS</td>
+</tr>
+<tr>
+<td>validated_signature</td>
+<td>boolean</td>
+<td>Has the signature of the messages been validated?</td>
+</tr>
+<tr>
+<td>eci</td>
+<td>integer</td>
+<td>Given ECI flag for the transaction.</td>
+</tr>
+<tr>
+<td>xid</td>
+<td>number</td>
+<td>Transaction identifier resulting from the authentication process.</td>
+</tr>
+<tr>
+<td>cavv</td>
+<td>number</td>
+<td>Cardholder Authentication Verification Value (CAVV)</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<ul>
+<li><p><code>authentication_status</code>  Authentication Status on 3DS one of <code>Y|A|N|U</code>.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<ul>
+<li><code>Y</code> Successful Authentication.</li>
+<li><code>A</code> Successful Attempt.</li>
+<li><code>N</code> Authentication is not available.</li>
+<li><code>U</code> Unable to know if authentication is available.</li>
+</ul></li>
+<li><p><code>validated_signature</code> When communicating with the ACS, message signatures must be validated, this parameter indicates the result of that validation..</p></li>
+<li><p><code>eci</code> The <em>Electronic Commerce Indicator</em> indicates the level of security and the result of the 3D Secure authorization. See <a href="#eci-codes">Eci Codes</a></p></li>
+</ul>
+<h2 id='get-transaction-status'>Get Transaction Status</h2>
+<blockquote>
+<p>Example Request:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://3ds-mpi.placetopay.com/api/transactions/1039"</span> <span class="se">\ </span>
+    -X GET <span class="se">\</span>
+    -H <span class="s2">"accept: application/json"</span> <span class="se">\ </span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -H <span class="s2">"Authorization: Bearer yourApiKey"</span> <span class="se">\ </span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Example Response (200):</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+    </span><span class="s2">"authentication_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"validated_signature"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"eci"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"xid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3030303030303030303030303030303030303032"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cavv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000020777351815352670947035181300000000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p>Get the status of a transaction in 3DS.</p>
+
+<p><code>GET http://example.com/api/transactions/{id}</code></p>
+<h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>id</td>
+<td>number</td>
+<td>Transaction Id, given in <code>LookupResponse</code></td>
+</tr>
+</tbody></table>
+<h2 id='handle-transactionstatus'>Handle TransactionStatus</h2>
+<p>Verify the <code>authentication_status</code> parameter in <code>TransactionStatus</code> and proceed as:</p>
+
+<table><thead>
+<tr>
+<th>Authentication Status</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Y</td>
+<td>true</td>
+<td>Authentication Successful</td>
+</tr>
+<tr>
+<td>A</td>
+<td>true</td>
+<td>Merchant attempted to authenticate the cardholder.</td>
+</tr>
+<tr>
+<td>N</td>
+<td>true</td>
+<td>Failed Authentication</td>
+</tr>
+<tr>
+<td>U</td>
+<td>true</td>
+<td>Could not be authenticated</td>
+</tr>
+<tr>
+<td>Y,A,N,U</td>
+<td>false</td>
+<td>Untrusted results</td>
+</tr>
+</tbody></table>
+<h1 id='eci-codes'>Eci Codes</h1>
+<p>The Electronic Commerce Indicator (ECI) indicates the level of security, in general, is the result of the attempted 3D Secure authorization.</p>
+
+<table><thead>
+<tr>
+<th>Visa</th>
+<th>MasterCard</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>Cardholder fully authenticated, 3D Secure applied.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1</td>
+<td>Merchant attempted to authenticate but the issuer or cardholder was non-participating, or an issuer access control server was not able to respond in time (Merchant-only-authentication).</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0</td>
+<td>Authentication did not succeed. The transaction did not use 3D Secure.</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The <strong>3DS-MPI</strong> API uses standard HTTP response codes to indicate success of failure of an API request.
+In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g., a required parameter was missing), and codes in the 5xx range indicate an error with MPI servers.</p>
 
 <table><thead>
 <tr>
@@ -455,39 +780,60 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Forbidden -- Your API key is not authorized to perform the action.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- The specified resource could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>Method Not Allowed -- You tried to access the API with an invalid method.</td>
 </tr>
 <tr>
 <td>406</td>
 <td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- You&#39;re requesting too many actions! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>
 <td>Internal Server Error -- We had a problem with our server. Try again later.</td>
 </tr>
 <tr>
+<td>502</td>
+<td>Bad Gateway Error -- We had a problem while acting as gateway. Try again later.</td>
+</tr>
+<tr>
 <td>503</td>
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+<h2 id='3ds-error'>3DS Error</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1005"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The associated franchise is not enabled"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>In some cases, 3DS errors are given in a custom format</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error_number</td>
+<td>number</td>
+<td>Error identifier</td>
+</tr>
+<tr>
+<td>error_description</td>
+<td>number</td>
+<td>Error Description</td>
 </tr>
 </tbody></table>
 
@@ -495,9 +841,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
