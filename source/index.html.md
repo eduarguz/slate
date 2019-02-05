@@ -8,7 +8,8 @@ toc_footers:
   - <a href='https://www.placetopay.com/web/'>Sign Up for a Key</a>
 
 includes:
-  - errors
+    - eci_codes
+    - errors
 
 search: true
 ---
@@ -183,7 +184,7 @@ md | string | if `disable_redirect` was `true`. Merchant data, additional data.
 
 - `transaction_id` MPI transaction identifier.
 
-- `eci_flag` Present if `enrolled` is `N` or `U`, The *Electronic Commerce Indicator* indicates the level of security and the result of the 3D Secure authorization. See #ECI Codes
+- `eci_flag` Present if `enrolled` is `N` or `U`, The *Electronic Commerce Indicator* indicates the level of security and the result of the 3D Secure authorization. See [Eci Codes](#eci-codes)
 
 - `acs_url` Present if `disable_redirect` was `true` & `enrolled` is `Y`. Contains the URL of the card issuer authentication site (bank).
 
@@ -317,7 +318,7 @@ cavv | number  | Cardholder Authentication Verification Value (CAVV)
     
 - `validated_signature` When communicating with the ACS, message signatures must be validated, this parameter indicates the result of that validation..
 
-- `eci` The *Electronic Commerce Indicator* indicates the level of security and the result of the 3D Secure authorization. See #ECI Codes
+- `eci` The *Electronic Commerce Indicator* indicates the level of security and the result of the 3D Secure authorization. See [Eci Codes](#eci-codes)
 
 ## Get Transaction Status
 
